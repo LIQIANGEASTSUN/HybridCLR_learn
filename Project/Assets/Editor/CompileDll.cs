@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.Build.Player;
@@ -16,7 +14,9 @@ public class CompileDll
         scriptCompilationSettings.group = BuildPipeline.GetBuildTargetGroup(target);
         scriptCompilationSettings.target = target;
 
-        string outDir = string.Format("{0}\\DLL", Application.dataPath);
+        string outDir = Application.dataPath;
+        outDir = outDir.Substring(0, outDir.IndexOf("Assets"));
+        outDir = string.Format("{0}DLL", outDir);
         if (!Directory.Exists(outDir))
         {
             Directory.CreateDirectory(outDir);
